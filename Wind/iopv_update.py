@@ -12,7 +12,7 @@ w.start()
 etfList = ["510300.SH", "510050.SH", "159919.SZ"]
 
 
-os.chdir("C:/Users/Yitong/AppData/Local/auto-option-mm/PythonProject/Wind/tmp")
+os.chdir("C:/Users/Yitong/AppData/Local/PythonProject/Wind/tmp")
 todaystr = dt.datetime.today().strftime(format="%Y-%m-%d")
 def windDownloadIOPV(windObj, etfName):
     res = windObj.wst(etfName, "iopv", "2020-01-02 09:00:00", todaystr+" 15:00:00", "")
@@ -36,7 +36,7 @@ for etfname in iopvDFList:
     iopvChg.to_csv(etfname+"_chg.csv", index=False)    
     iopvChgList[etfname] = iopvChg
 #%%
-os.chdir("C:/Users/Yitong/AppData/Local/auto-option-mm/PythonProject/Wind/0417-0428")
+os.chdir("C:/Users/Yitong/AppData/Local/PythonProject/Wind/Old")
 iopvSavedList = {}
 for etfname in etfList:
     iopvSavedList[etfname] = pd.read_csv(etfname+"_chg.csv")
@@ -45,14 +45,21 @@ for etfname in etfList:
     iopvSavedList[etfname]['time'] = pd.to_datetime(iopvSavedList[etfname]['time']).dt.time
     iopvSavedList[etfname]['timestamp'] = iopvSavedList[etfname].apply(lambda r : pd.datetime.combine(r['date'],r['time']),1)
 #%%
+iopvUpdatedList= {}
 for etfname in etfList:
     lastts = iopvSavedList[etfname]['timestamp'].max()
-    iopvSavedList[etfname] = pd.concat([iopvSavedList[etfname], iopvChgList[etfname][iopvChgList[etfname]['timestamp']>lastts]]])
+    to_append = iopvChgList[etfname][iopvChgList[etfname]['timestamp']>lastts]
+    iopvUpdatedList[etfname] = pd.concat([iopvSavedList[etfname], to_append])
 #%%
-iopvDFSavedList = {}
+os.chdir("C:/Users/Yitong/AppData/Local/PythonProject/Wind")
 for etfname in etfList:
-    iopvDFSavedList[etfname] = pd.read_csv(etfname+".csv")
-    iopvDFSavedList[etfname]['timestamp'] = pd.to_datetime(iopvDFSavedList[etfname]['timestamp'])
+    iopvUpdatedList[etfname].to_csv(etfname+"_chg.csv", index=False) 
+
+# %%
+
+os.chdir("C:/Users/Yitong/AppData/Local/PythonProject/Wind/Old")
+for etfname in etfList:
+    iopvUpdatedList[etfname].to_csv(etfname+"_chg.csv", index=False) 
 
 
 # %%

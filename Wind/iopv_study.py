@@ -13,10 +13,16 @@ etfList = ["510300.SH", "510050.SH", "159919.SZ"]
 
 
 # %%
-
-
 #%%
-
+os.chdir("C:/Users/Yitong/AppData/Local/PythonProject/Wind/Old")
+iopvChgList = {}
+for etfname in etfList:
+    iopvChgList[etfname] = pd.read_csv(etfname+"_chg.csv")
+    # iopvSavedList[etfname]['timestamp'] = pd.to_datetime(iopvSavedList[etfname]['timestamp'])
+    iopvChgList[etfname]['date'] = pd.to_datetime(iopvChgList[etfname]['date']).dt.date
+    iopvChgList[etfname]['time'] = pd.to_datetime(iopvChgList[etfname]['time']).dt.time
+    iopvChgList[etfname]['timestamp'] = iopvChgList[etfname].apply(lambda r : pd.datetime.combine(r['date'],r['time']),1)
+#%%
 # %%
 os.chdir("C:/Users/Yitong/AppData/Local/auto-option-mm/SpotDetail")
 expSpotList = {}
