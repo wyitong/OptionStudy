@@ -16,7 +16,7 @@ rootpath = "C:/Users/Yitong/AppData/Local/auto-option-mm/ButterKnife/"
 paramlist = []
 # paramlist.append((0.001,0.00025,0.005,4000, 0.9))
 # paramlist.append((0.001,0.00025,0.005,4000, 0.7))
-# paramlist.append((0.001,0.00025,0.005,4000, 0.6))
+paramlist.append((0.001,0.00025,0.005,4000, 0.6))
 # paramlist.append((0.001,0.00025,0.005,4000, 0.5))
 # paramlist.append((0.001,0.00025,0.005,4000, 0.4))
 # paramlist.append((0.001,0.00025,0.005,4000, 0.3))
@@ -41,7 +41,7 @@ paramlist = []
 #Extrinsic
 # paramlist.append((0.002,0.0005,0.015,4000, 0.4, 'Extrinsic'))
 # paramlist.append((0.0005,0.0005,0.015,4000, 0.4, 'Extrinsic'))
-paramlist.append((0.0005,0.0005,0.0015,4000, 0.4, 'Extrinsic'))
+# paramlist.append((0.0005,0.0005,0.0015,4000, 0.4, 'Extrinsic'))
 #%%
 def LoadCostPnl(filename,monthstr):
     pnlcost = pd.read_csv(filename)

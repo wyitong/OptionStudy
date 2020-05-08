@@ -53,13 +53,13 @@ for etfname in etfList:
 #%%
 os.chdir("C:/Users/Yitong/AppData/Local/PythonProject/Wind")
 for etfname in etfList:
-    iopvUpdatedList[etfname].to_csv(etfname+"_chg.csv", index=False) 
+    iopvUpdatedList[etfname].to_csv(etfname+"_chg.csv", index=False,date_format='%Y-%m-%d %H:%M:%S.%f') 
 
 # %%
 
 os.chdir("C:/Users/Yitong/AppData/Local/PythonProject/Wind/Old")
 for etfname in etfList:
-    iopvUpdatedList[etfname].to_csv(etfname+"_chg.csv", index=False) 
+    iopvUpdatedList[etfname].to_csv(etfname+"_chg.csv", index=False,date_format='%Y-%m-%d %H:%M:%S.%f') 
 
 
 # %%
